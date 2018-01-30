@@ -5,9 +5,9 @@
   connection: local
   gather_facts: no
   vars:
-    user_name: jea
-    git_user_name: JEA666
-    user_mail: janerik.andersen@gmail.com
+    user_name: name
+    git_user_name: name
+    user_mail: name@name.com
     cli_editor: vim
   roles:
     - common
