@@ -1,0 +1,9 @@
+[local]
+#localhost       ansible_connection=local
+#127.0.0.1        ansible_connection=local
+localhost ansible_host=localhost ansible_connection=local
+
+[local:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+

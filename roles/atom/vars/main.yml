@@ -1,0 +1,6 @@
+---
+
+# vars file for atom
+
+atom_tmp_deb: "/home/jea/Downloads/atom-amd64.deb"
+atom_url_deb: "https://github.com/atom/atom/releases/download/v1.23.3/atom-amd64.deb"

@@ -1,0 +1,21 @@
+---
+# tasks file for setup_git
+#- name: Git user mail
+#  become: yes
+#  become_user: "{{ user_name }}"
+
+- git_config:
+    name: user.email
+    scope: global
+    value: "{{ user_mail }}"
+
+
+- git_config:
+    name: core.editor
+    scope: global
+    value: "{{ cli_editor }}"
+
+- git_config:
+    name: user.name
+    scope: global
+    value: "{{ git_user_name }}"

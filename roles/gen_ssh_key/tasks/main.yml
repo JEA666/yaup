@@ -1,0 +1,15 @@
+---
+# tasks file for gen_ssh_key
+- name: Check if key exists
+  stat:
+    path: /home/jea/.ssh/id_rsa.pub
+  register: key_exists
+
+- name: Generate SSH key
+  user:
+    name: "{{ key_user_name }}"
+    ssh_key_comment: janerik.andersen@gmail.com
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+  when: not key_exists.stat.exists

@@ -1,0 +1,20 @@
+---
+# tasks file for slack
+- name: Check if slack is installed
+  command: dpkg-query -W slack-desktop
+  register: check_slack
+  failed_when: false
+  changed_when: false
+
+- name: Download Ubuntu slack package
+  command: "wget -O /tmp/slack-desktop.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-{{ slack_version }}-amd64.deb"
+  args:
+    creates: "/tmp/slack-desktop.deb"
+  when: check_slack.rc == 1
+
+- name: Install Ubuntu slack package
+  become: yes
+  become_user: root
+  apt:
+    deb: /tmp/slack-desktop.deb
+  when: check_slack.rc == 1

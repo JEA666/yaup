@@ -1,0 +1,22 @@
+---
+
+- name: Install common packages
+  become: yes
+  become_user: root
+
+  apt: name={{ item }} state=present
+  with_items:
+    - curl
+    - git
+    - htop
+    - iftop
+    - vim
+    - default-jdk
+    - zsh
+    - virtualbox
+    - guake
+
+- name: Upgrade installed packages
+  become: yes
+  become_user: root
+  apt: upgrade=yes

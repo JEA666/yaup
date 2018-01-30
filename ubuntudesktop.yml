@@ -1,0 +1,34 @@
+---
+
+- name: Provisioning Ubuntu
+  hosts: local
+  connection: local
+  gather_facts: no
+  vars:
+    user_name: jea
+    git_user_name: JEA666
+    user_mail: janerik.andersen@gmail.com
+    cli_editor: vim
+  roles:
+    - common
+    - gen_ssh_key
+    - setup_git
+    - atom
+    - slack
+#    - oh-my-zsh
+
+- name: Cleaning Ubuntu
+  hosts: local
+  connection: local
+  become: yes
+  become_user: root
+  gather_facts: no
+  tasks:
+
+    - name: Removing .deb from /tmp
+      shell: rm -f /tmp/*.deb*
+
+    - name: If dell-super-key is present
+      apt:
+        name: dell-super-key
+        state: absent
