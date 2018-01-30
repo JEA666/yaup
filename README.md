@@ -1,2 +1,6 @@
 # Ubuntu Provisioning repo
-It so 96 'Under construction' 
+### Instruction
+  #### wget https://github.com/JEA666/jaup/archive/master.zip
+  #### unzip master.zip
+  #### cd master.zip
+  #### sudo ./install
