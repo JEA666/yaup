@@ -1,0 +1,9 @@
+---
+
+vars:
+  # Username?
+  user_name: jea
+  # Git config
+  git_user_name: JEA666
+  user_mail: janerik.andersen@gmail.com
+  cli_editor: vim
