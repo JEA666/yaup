@@ -1,29 +1,35 @@
 ---
 # tasks file for spk_dir
-- name: Check if folder exists
-  stat:
-    path: "{{ item }}"
+#- name: Check if folder exists
+#  stat:
+#    path: "{{ item }}"
 #    path: ~/spk_config
 #    path: ~/spk_data
 #    path: ~/spk_logs
 #  register: file_exists
+
+#  register: file_exists
+- name: Check and make folders
+  file:
+    path: ~/"{{ item }}"
+    state: directory
+#  with_filetree: ~/
   with_items:
-    - ~/spk_config
-    - ~/spk_data
-    - ~/spk_logs
-  register: file_exists
+    - spk_config
+    - spk_data
+    - spk_logs
+  when: item.state !='directory'
+# - file:
+#     path: ~/spk_config
+#     state: directory
+#   when: not file_exists.stat.exists
 
-- file:
-    path: ~/spk_config
-    state: directory
-  when: not file_exists.stat.exists
-
-- file:
-    path: ~/spk_data
-    state: directory
-  when: not file_exists.stat.exists
-
-- file:
-    path: ~/spk_logs
-    state: directory
-  when: not file_exists.stat.exists
+# - file:
+#     path: ~/spk_data
+#     state: directory
+#   when: not file_exists.stat.exists
+#
+# - file:
+#     path: ~/spk_logs
+#     state: directory
+#   when: not file_exists.stat.exists

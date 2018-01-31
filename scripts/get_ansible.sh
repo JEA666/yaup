@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://google.github.io/styleguide/shell.xml
 
 set -o xtrace
 

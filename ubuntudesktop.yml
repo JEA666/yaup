@@ -15,8 +15,8 @@
     - common
     - gen_ssh_key
     - setup_git
-    - atom
-    - slack
+#    - atom
+#    - slack
     - spk_dir
 #    - oh-my-zsh
 
