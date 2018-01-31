@@ -15,6 +15,7 @@
     - zsh
     - virtualbox
     - guake
+    - tree
 
 - name: Upgrade installed packages
   become: yes
