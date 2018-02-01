@@ -1,0 +1,9 @@
+---
+
+# Username?
+user_name: jea
+
+# Git config
+git_user_name: myuser@github
+user_mail: yourmail@somwher.com
+cli_editor: vim
