@@ -15,14 +15,16 @@
   when: zsh_exists.rc ==1
 
 - name: Install oh-my-zsh
-  git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
-  when: zsh_exists.rc == 1
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: ~/.oh-my-zsh
+  when: zsh_exists.rc == 0
 
 - name: Copy .zshrc to $HOME
   template:
     src: zshrc
     dest: ~/.zshrc
-  when: zsh_exists.rc == 1
+  when: zsh_exists.rc == 0
 
 - name: Switch to ZSH
   become: yes

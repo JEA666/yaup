@@ -13,7 +13,7 @@
     - setup_git
     - atom
     - slack
-    - spk_dir
+    - spk_config
     - oh-my-zsh
 
 - name: Cleaning Ubuntu

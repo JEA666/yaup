@@ -1,0 +1,28 @@
+---
+# tasks file for spk_config
+# SPK dirs
+- name: Create folders if missing
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - ~/spk_config
+    - ~/spk_data
+    - ~/spk_logs
+    - ~/dev
+
+# SPK vars
+- name: Add vars to .bashrc/.zshrc # todo make check for files and a loop
+  lineinfile:
+    path: ~/.bashrc
+    line: 'export SPK_LOG_ROOT=~/spk_logs'
+    line: 'export SPK_CONFIG_ROOT=~/spk_config'
+    line: 'export SPK_DATA=~/spk_data'
+
+# spk-app-config
+ - name: Download and install spk-app-spk_config
+   git:
+     repo: ssh://git@git.spk.no:7999/dev/vdi-tools.git
+     dest: ~/dev
+     update: yes
+#  when:
