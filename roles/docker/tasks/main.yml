@@ -1,7 +1,16 @@
 ---
 # tasks file for docker
-- name: pre install - docker
+- name: Docker pre install - add key
+  become: yes
+  become_user: root
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
-    keyserver:
-    id:
+#    keyserver:
+    id: 0EBFCD88
+
+- name: Docker pre install - add repo
+  become: yes
+  become_user: root
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu $lsb_release -cs stable"
+    state: present

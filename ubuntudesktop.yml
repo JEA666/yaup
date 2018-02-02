@@ -26,7 +26,7 @@
   tasks:
 
     - name: Removing .deb from /tmp
-      shell: rm -f /tmp/*.deb*
+      shell: rm -f /tmp/{atom-amd64.deb,slack-desktop.deb}
 
     - name: If dell-super-key is present
       apt:

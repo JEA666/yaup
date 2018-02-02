@@ -1,12 +1,20 @@
 ---
 
 # Username?
-user_name: jea
+user_name:
+  navnpåbruker
 
 # Git config
-git_user_name: myuser@github
-user_mail: yourmail@somwher.com
-cli_editor: vim
+git_user_name:
+  myuser@github
+user_mail:
+  yourmail@somwher.com
+cli_editor:
+  vim
 
 # *rc-files
-rc_file: myrcfile # .bashrc/.zshrc
+rc_file:
+  myrcfile # .bashrc/.zshrc
+
+distro:
+  xenial

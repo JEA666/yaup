@@ -17,6 +17,9 @@
     - virtualbox
     - guake
     - tree
+    - apt-transport-https
+    - ca-certificates
+    - software-properties-common
 
 - name: Upgrade installed packages
   become: yes
