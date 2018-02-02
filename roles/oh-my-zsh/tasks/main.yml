@@ -26,13 +26,13 @@
     dest: ~/.zshrc
   when: zsh_exists.rc == 0
 
-# - name: Switch to ZSH # Works privat/ not at work
-#   become: yes
-#   become_user: root
-#   user:
-#     name: "{{user_name}}"
-#     shell: /usr/bin/zsh
-#   when: zsh_exists.rc == 0
+- name: Switch to ZSH # Works privat/ not at work
+  become: yes
+  become_user: root
+  user:
+    name: "{{user_name}}"
+    shell: /usr/bin/zsh
+  when: zsh_exists.rc == 0
 
 
 

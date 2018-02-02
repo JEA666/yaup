@@ -7,3 +7,6 @@ user_name: jea
 git_user_name: myuser@github
 user_mail: yourmail@somwher.com
 cli_editor: vim
+
+# *rc-files
+rc_file: myrcfile # .bashrc/.zshrc

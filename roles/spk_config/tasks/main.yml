@@ -14,12 +14,14 @@
 # SPK vars
 - name: Add vars to .bashrc/.zshrc # todo make check for files and a loop
   lineinfile:
-    path: ~/.bashrc
+    path: "{{ rcfile }}"
     line: "{{ item }}"
   with_items:
-    - {'export SPK_LOG_ROOT=~/spk_logs'}
-    - {'export SPK_CONFIG_ROOT=~/spk_config'}
-    - {'export SPK_DATA=~/spk_data'}
+    - " "
+    - "export SPK_LOG_ROOT=~/spk_logs"
+    - "export SPK_CONFIG_ROOT=~/spk_config"
+    - "export SPK_DATA=~/spk_data"
+
 # spk-app-config
  # - name: Download and install spk-app-spk_config
  #   git:
