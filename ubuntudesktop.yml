@@ -16,6 +16,7 @@
     - docker
     - spk_config
     - oh-my-zsh
+#    - clean-install
 
 - name: Cleaning Ubuntu
   hosts: local

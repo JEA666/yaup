@@ -1,6 +1,17 @@
 ---
 # tasks file for docker
-- name: Docker pre install - add key
+# - name: pre install Docker - Check for old version and remove
+#   become: yes
+#   become_user: root
+#   apt:
+#     name: "{{ item }}"
+#     state: absent
+#   whit_item:
+#     - docker
+  #  - { deb: 'docker-engine' }
+  #  - { deb: 'docker.io' }
+
+- name: pre install Docker - add key
   become: yes
   become_user: root
   apt_key:
@@ -8,9 +19,19 @@
 #    keyserver:
     id: 0EBFCD88
 
-- name: Docker pre install - add repo
+
+- name: Pre install Docker - add repo
   become: yes
   become_user: root
   apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu $lsb_release -cs stable"
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ distro }} stable
+    state: present
+
+
+- name: Install - add Docker
+  become: yes
+  become_user: root
+  apt:
+    name: docker-ce
+    update_cache: yes
     state: present

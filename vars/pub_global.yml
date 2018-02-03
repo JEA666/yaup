@@ -13,7 +13,7 @@ cli_editor:
   vim
 
 # *rc-files
-rc_file:
+rcfile:
   myrcfile # .bashrc/.zshrc
 
 distro:
