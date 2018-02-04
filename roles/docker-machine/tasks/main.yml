@@ -1,0 +1,11 @@
+---
+# tasks file for docker-machine
+- name: Pre Install - Get Docker-Machine
+  command: "wget -O /tmp/docker-machine https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-linux-x86_64"
+  args:
+    creates: "/tmp/docker-machine"
+
+- name: Install Docker-Machine
+  become: yes
+  become_user: root
+  command: install /tmp/docker-machine /usr/local/bin/docker-machine

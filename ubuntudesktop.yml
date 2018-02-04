@@ -14,6 +14,7 @@
     - atom
     - slack
     - docker
+    - docker-machine
     - spk_config
     - oh-my-zsh
 #    - clean-install
