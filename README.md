@@ -3,14 +3,14 @@
 ### Instruction
   - wget https://github.com/JEA666/jaup/archive/master.zip
   - unzip master.zip
-  - cd vars
+  - cd jaup-master/vars
   - cp pub_global.yml pri_global.yml
   - edit pri_global -> vi pri_global.yml
   - cd ..
   - sudo ./install
 
 ```
-Ubuntu-oppsett
+jaup
 |
 ├── roles
 │   ├── atom
