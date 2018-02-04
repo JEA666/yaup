@@ -1,15 +1,15 @@
 ---
 # tasks file for docker
-# - name: pre install Docker - Check for old version and remove
-#   become: yes
-#   become_user: root
-#   apt:
-#     name: "{{ item }}"
-#     state: absent
-#   whit_item:
-#     - docker
-  #  - { deb: 'docker-engine' }
-  #  - { deb: 'docker.io' }
+- name: pre install Docker - Check for old version and remove
+  become: yes
+  become_user: root
+  apt:
+    name: "{{ item.deb }}"
+    state: absent
+  with_items:
+    - { deb: docker }
+    - { deb: docker-engine }
+    - { deb: docker.io }
 
 - name: pre install Docker - add key
   become: yes

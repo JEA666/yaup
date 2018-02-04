@@ -9,12 +9,12 @@
 #    - vars/pub_global.yml
   roles:
     - common
-    - gen_ssh_key
-    - setup_git
+    - gen_ssh_key   # Done
+    - setup_git     # Done
     - atom
     - slack
-    - docker
-    - docker-machine
+    - docker        # Done
+    - docker-machine  # need a check for install
     - spk_config
     - oh-my-zsh
 #    - clean-install
