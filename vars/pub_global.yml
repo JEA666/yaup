@@ -1,20 +1,25 @@
 ---
 
-# Username?
+# Username
 user_name:
-  navnpåbruker
+gmail: mail@gmail
+work_mail: mail@work
+
+#SSH key file names
+private_key: _rsa
+work_key: work_rsa
+github_key: github_rsa
 
 # Git config
-git_user_name:
-  myuser@github
-user_mail:
-  yourmail@somwher.com
-cli_editor:
-  vim
+git_user_name: username@github
+user_mail: mail@git
+cli_editor: vim
 
 # *rc-files
-rcfile:
-  myrcfile # .bashrc/.zshrc
+rcfile: ~/.zshrc   # .bashrc/.zshrc
 
-distro:
-  xenial
+#Ubuntu distro
+distro: xenial
+
+#tmpfiles_remove:
+#  {atom-amd64.deb,slack-desktop.deb}
