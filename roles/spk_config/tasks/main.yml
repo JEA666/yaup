@@ -23,9 +23,9 @@
     - "export SPK_DATA=~/spk_data"
 
 # spk-app-config
- # - name: Download and install spk-app-spk_config
- #   git:
- #     repo: ssh://git@git.spk.no:7999/dev/vdi-tools.git
- #     dest: ~/dev
- #     update: yes
+- name: Download and install spk-app-spk_config
+  git:
+    repo: ssh://git@git.spk.no:7999/dev/vdi-tools.git
+    dest: ~/dev
+    update: yes
 #  when:

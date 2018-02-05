@@ -9,14 +9,15 @@
 #    - vars/pub_global.yml
   roles:
     - common
+#    - jdk8
     - gen_ssh_key   # Done
-    - setup_git     # Done
+    - setup_git
+    - spk_config     # Done
+    - docker
+    - docker-machine
+    - oh-my-zsh
     - atom
     - slack
-    - docker        # Done
-    - docker-machine  # need a check for install
-    - spk_config
-    - oh-my-zsh
 #    - clean-install
 
 - name: Cleaning Ubuntu
@@ -27,8 +28,8 @@
   gather_facts: no
   tasks:
 
-    - name: Removing .deb from /tmp
-      shell: rm -f /tmp/{atom-amd64.deb,slack-desktop.deb}
+    # - name: Removing .deb from /tmp
+    #   shell: rm -f /tmp/{atom-amd64.deb,slack-desktop.deb}
 
     - name: If dell-super-key is present
       apt:
