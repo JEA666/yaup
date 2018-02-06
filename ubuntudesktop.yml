@@ -9,7 +9,7 @@
 #    - vars/pub_global.yml
   roles:
     - common
-#    - jdk8
+    - jdk8
     - gen_ssh_key   # Done
     - setup_git
     - spk_config     # Done

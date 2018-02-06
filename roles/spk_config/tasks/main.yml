@@ -21,11 +21,13 @@
     - "export SPK_LOG_ROOT=~/spk_logs"
     - "export SPK_CONFIG_ROOT=~/spk_config"
     - "export SPK_DATA=~/spk_data"
+    - "export JAVA_HOME={{ jdk_home }}"
+    - "export PATH=${PATH}:${JAVA_HOME}/bin"
 
 # spk-app-config
-- name: Download and install spk-app-spk_config
-  git:
-    repo: ssh://git@git.spk.no:7999/dev/vdi-tools.git
-    dest: ~/dev
-    update: yes
+# - name: Download and install spk-app-spk_config
+#   git:
+#     repo: ssh://git@git.spk.no:7999/dev/vdi-tools.git
+#     dest: ~/dev
+#     update: yes
 #  when:

@@ -1,7 +1,44 @@
 ---
 # tasks file for jdk8
 
-- name: Download jdk8u162
-    command: wget -O /tmp/jdk8u162-amd64.tar.gz http://download.oracle.com/otn-pub/java/jdk/8u162-b12/0da788060d494f5095bf8624735fa2f1/jdk-8u162-linux-x64.tar.gz
-    args:
-      creates: "/tmp/jdk8u162-amd64.tar.gz"
+- name: pre install JDK - Check OpenJDK and remove
+  become: yes
+  become_user: root
+  apt:
+    name: "{{ item.deb }}"
+    state: absent
+  with_items:
+    - { deb: openjdk }
+    - { deb: openjdk-8-jre-headless }
+    - { deb: java-8-openjdk }
+
+- name: Pre install JDK - Remove OpenJDK file and folders
+  become: yes
+  become_user: root
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /etc/java-8-openjdk
+
+- name: Pre install - Download jdk8u161
+  get_url:
+    url: "{{ download_url }}"
+    dest: /tmp/jdk8u161-x64.tar.gz
+    headers: "{{ jdk_cookie }}"
+    checksum: "{{ jdk8u161_checksum }}"
+
+- name: Pre install - Create java home
+  become: yes
+  become_user: root
+  file:
+    path: "{{ jdk_home }}"
+    state: directory
+
+- name: Install - extract archive
+  become: yes
+  become_user: root
+  unarchive:
+    src:        "{{ jdk_download_path }}"
+    dest:       "{{ jdk_home }}"
+    extra_opts: ['--strip-components=1']
