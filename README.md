@@ -17,7 +17,7 @@ jaup
 │   │   ├── defaults
 │   │   ├── handlers
 │   │   ├── meta
-│   │   ├── tasks
+│   │   ├── tasks     # config file main.yml lives her....
 │   │   ├── tests
 │   │   └── vars
 │   ├── common
