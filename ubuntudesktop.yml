@@ -15,6 +15,8 @@
     - spk_config     # Done
     - docker
     - docker-machine
+#    - citrix_rec
+#    - vmware_client
     - oh-my-zsh
     - atom
     - slack

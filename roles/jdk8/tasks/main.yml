@@ -1,7 +1,7 @@
 ---
 # tasks file for jdk8
 
-- name: pre install JDK - Check OpenJDK and remove
+- name: pre install JDK - Check for OpenJDK and remove
   become: yes
   become_user: root
   apt:
@@ -21,24 +21,36 @@
   with_items:
     - /etc/java-8-openjdk
 
-- name: Pre install - Download jdk8u161
-  get_url:
-    url: "{{ download_url }}"
-    dest: /tmp/jdk8u161-x64.tar.gz
-    headers: "{{ jdk_cookie }}"
-    checksum: "{{ jdk8u161_checksum }}"
-
-- name: Pre install - Create java home
-  become: yes
-  become_user: root
-  file:
+- name: 'Pre install - Check for Oracle JDK'
+  stat:
     path: "{{ jdk_home }}"
-    state: directory
+  register: java_exist
 
-- name: Install - extract archive
-  become: yes
-  become_user: root
-  unarchive:
-    src:        "{{ jdk_download_path }}"
-    dest:       "{{ jdk_home }}"
-    extra_opts: ['--strip-components=1']
+- name: Install Oracle JDK
+  when: java_exist.stat.exists == false
+  block:
+
+    - name: Pre install JDK - Download jdk8u161
+      get_url:
+        url: "{{ download_url }}"
+        dest: /tmp/jdk8u161-x64.tar.gz
+        headers: "{{ jdk_cookie }}"
+        checksum: "{{ jdk8u161_checksum }}"
+      block:
+
+        - name: Pre install JDK - Create java home
+#          become: yes
+#          become_user: root
+          file:
+            path: "{{ jdk_home }}"
+            state: directory
+
+        - name: Install JDK - extract archive
+#          become: yes
+#          become_user: root
+          unarchive:
+            src:        "{{ jdk_download_path }}"
+            dest:       "{{ jdk_home }}"
+            extra_opts: ['--strip-components=1']
+          become: yes
+          become_user: root

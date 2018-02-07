@@ -20,6 +20,7 @@
     - apt-transport-https
     - ca-certificates
     - software-properties-common
+    - gdebi-core
 
 - name: Upgrade installed packages
   become: yes
