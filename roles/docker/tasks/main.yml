@@ -1,37 +1,46 @@
 ---
 # tasks file for docker
-- name: pre install Docker - Check for old version and remove
+- name: Pre install -- Check for old Docker and remove
+  block:
+    - name: Remove docker
+      apt:
+        name: "{{ item.deb }}"
+        state: absent
+      with_items:
+        - { deb: docker }
+        - { deb: docker-engine }
+        - { deb: docker.io }
+
+    - name: Add key
+      apt_key:
+        url: "{{ dc_key_url }}"
+        id: "{{ dc_key_id }}"
+
+    - name: Add repo
+      apt_repository:
+        repo: deb [arch=amd64] {{ dc_url }} {{ distro }} stable
+        state: present
+
+    - name: Install - add Docker
+      apt:
+        name: docker-ce
+        update_cache: yes
+        state: present
+
+#    - name: Add docker group
+#      group:
+#        name: docker
+#        state: present
+
+#    - name: Add user to docker group
+#      user:
+#        name: "{{ user_name }}"
+#        group: docker
+
+    - name: Post install -- Add docker group and user
+      lineinfile:
+        path: /etc/group        
+        line: "docker:x:300:{{ user_name }}"
+
   become: yes
   become_user: root
-  apt:
-    name: "{{ item.deb }}"
-    state: absent
-  with_items:
-    - { deb: docker }
-    - { deb: docker-engine }
-    - { deb: docker.io }
-
-- name: pre install Docker - add key
-  become: yes
-  become_user: root
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-#    keyserver:
-    id: 0EBFCD88
-
-
-- name: Pre install Docker - add repo
-  become: yes
-  become_user: root
-  apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ distro }} stable
-    state: present
-
-
-- name: Install - add Docker
-  become: yes
-  become_user: root
-  apt:
-    name: docker-ce
-    update_cache: yes
-    state: present

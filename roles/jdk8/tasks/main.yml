@@ -1,7 +1,7 @@
 ---
 # tasks file for jdk8
 
-- name: pre install JDK - Check for OpenJDK and remove
+- name: Pre install JDK - Check for OpenJDK and remove
   block:
     - name: Remove openjdk
       apt:
@@ -26,6 +26,8 @@
   stat:
     path: "{{ jdk_home }}"
   register: java_exists
+  failed_when: false
+  changed_when: false
 
 - name: Pre install JDK - Download jdk8u161
   get_url:

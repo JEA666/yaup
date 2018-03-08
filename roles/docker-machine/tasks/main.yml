@@ -1,11 +1,19 @@
 ---
 # tasks file for docker-machine
-- name: Pre Install - Get Docker-Machine
-  command: "wget -O /tmp/docker-machine https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-linux-x86_64"
-  args:
-    creates: "/tmp/docker-machine"
+- name: Pre Install -- Check for DOCKER-MACHINE
+  command: which docker-machine
+  register: check_dm
+  failed_when: false
+  changed_when: false
+
+- name: Pre Install -- Download DOCKER-MACHINE
+  get_url:
+    url: "{{ dm_url }}{{ dm_version }}{{ dm_trailer }}"
+    dest: /tmp/docker-machine
+  when: check_dm.rc == 1
 
 - name: Install Docker-Machine
   become: yes
   become_user: root
   command: install /tmp/docker-machine /usr/local/bin/docker-machine
+  when: check_dm.rc == 1

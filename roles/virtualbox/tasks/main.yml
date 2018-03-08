@@ -1,0 +1,30 @@
+---
+# tasks file for virtualbox
+- name: Install Virtualbox
+  block:
+    - name: Pre install -- check for virtualbox
+      command: which virtualbox
+      register: check_vbox
+      failed_when: false
+      changed_when: false
+
+# - name: Pre install -- Download virtualbox
+#   get_url:
+#     url: "{{ vbox_url }}{{ vbox_version }}{{ bits }}"
+#     dest: /tmp/virtualbox.deb
+#   when: check_vbox.rc == 1
+
+    - name: Pre install -- Add repository
+      apt_repository:
+        repo: deb https://download.virtualbox.org/virtualbox/debian xenial contrib
+        state: present
+      when: check_vbox.rc == 1
+
+    - name: Install Virtualbox
+      apt:
+        name: virtualbox-5.2
+        state: present
+      when: check_vbox.rc == 1
+
+  become: yes
+  become_user: root

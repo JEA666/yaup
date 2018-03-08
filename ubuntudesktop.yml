@@ -5,35 +5,29 @@
   connection: local
   gather_facts: yes
   vars_files:
-    - vars/pri_global.yml
-#    - vars/pub_global.yml
+    - vars/pri_global.yml   
+
   roles:
+# roles
     - common
     - jdk8
-    - gen_ssh_key   # Done
+    - gen_ssh_key
     - setup_git
-    - spk_config     # Done
+
     - docker
+    - slack
+    - virtualbox
+##    - citrix
+##    - vmware_client
+
+
     - docker-machine
-#    - citrix_rec
-#    - vmware_client
     - oh-my-zsh
     - atom
-    - slack
-#    - clean-install
+#    - mailspring
 
-- name: Cleaning Ubuntu
-  hosts: local
-  connection: local
-  become: yes
-  become_user: root
-  gather_facts: no
-  tasks:
 
-    # - name: Removing .deb from /tmp
-    #   shell: rm -f /tmp/{atom-amd64.deb,slack-desktop.deb}
+  #    - i3wm
 
-    - name: If dell-super-key is present
-      apt:
-        name: dell-super-key
-        state: absent
+
+    - clean-install

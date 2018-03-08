@@ -1,18 +1,10 @@
 ---
 # tasks file for oh-my-zsh
-- name: Check for zsh text editor
+- name: Pre install ZSH - Check for shell
   command: dpkg-query -W zsh
   register: zsh_exists
   failed_when: false
   changed_when: false
-
-- name: Install zsh
-  become: yes
-  become_user: root
-  apt:
-    name: zsh
-    state: present
-  when: zsh_exists.rc ==1
 
 - name: Install oh-my-zsh
   git:
@@ -26,27 +18,10 @@
     dest: ~/.zshrc
   when: zsh_exists.rc == 1
 
-- name: Switch to ZSH # Works privat/ not at work
+- name: Post install ZSH - Switch shell  # Works privat/ not at work
   become: yes
   become_user: root
   user:
     name: "{{user_name}}"
     shell: /usr/bin/zsh
   when: zsh_exists.rc == 1
-
-
-
-
-
-# - name: Download Ubuntu oh-my-zsh package
-#   command: "wget -O /tmp/oh-my-zsh.deb https://github.com/atom/atom/releases/download/{{ atom_version }}/atom-amd64.de"
-#   args:
-#     creates: "/tmp/atom-amd64.deb"
-#   when: zsh_exists.rc == 1
-#
-# - name: Instaling Atom text editor
-#   become: yes
-#   become_user: root
-#   apt:
-#     deb: /tmp/atom-amd64.deb
-#   when: atom_exists.rc == 1

@@ -1,26 +1,20 @@
 ---
+
 # tasks file for clean-install
 
-# - name: post install - cleaning...
-#   hosts: local
-#   connection: local
-#   become: yes
-#   become_user: root
-#   gather_facts: no
-#   tasks:
+- name: post install - cleaning...
+  block:
+    - name: If dell-super-key is present
+      apt:
+        name: dell-super-key
+        state: absent
 
-- name: Removing .deb from /tmp
-    shell: rm -f /tmp/{{ tmpfiles_remove }}
+    - name: Remove useless packages from the cache
+      apt:
+        autoclean: yes
 
-- name: If dell-super-key is present
-  apt:
-    name: dell-super-key
-    state: absent
-
-- name: Remove useless packages from the cache
-  apt:
-    autoclean: yes
-
-- name: Remove dependencies that are no longer required
-  apt:
-    autoremove: yes
+    - name: Remove dependencies that are no longer required
+      apt:
+        autoremove: yes
+  become: yes
+  become_user: root

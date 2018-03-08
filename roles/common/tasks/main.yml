@@ -1,28 +1,30 @@
 ---
 
-- name: Install common packages
+- name: Common packages
+  block:
+    - name: Install
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - curl
+        - git
+        - htop
+        - iftop
+        - vim
+        - autofs
+        - virtualbox
+        - tree
+        - apt-transport-https
+        - ca-certificates
+        - software-properties-common
+        - gdebi-core
+        - zsh
+        - glances
+        - xbacklight
+  #      - npm
+
+    - name: Upgrade installed packages
+      apt: upgrade=yes
   become: yes
   become_user: root
-
-  apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - curl
-    - git
-    - htop
-    - iftop
-    - vim
-    - default-jdk
-    - virtualbox
-    - guake
-    - tree
-    - apt-transport-https
-    - ca-certificates
-    - software-properties-common
-    - gdebi-core
-
-- name: Upgrade installed packages
-  become: yes
-  become_user: root
-  apt: upgrade=yes
