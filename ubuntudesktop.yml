@@ -5,16 +5,18 @@
   connection: local
   gather_facts: yes
   vars_files:
-    - vars/pri_global.yml   
+          #    - inventory/local/group_vars/
+    - inventory/local/host_vars/localApps 
+    - inventory/local/host_vars/userVars
+    - inventory/local/host_vars/priHost    
 
   roles:
-    - common
-    - gen_ssh_key
+    - sysTools
+    - devTools
     - setup_git
-    - docker
-    - slack
-    - virtualbox
-    - docker-machine
-    - oh-my-zsh
-
+      # - docker
+      # - slack
+      # - virtualbox
+      # - docker-machine
+      # - oh-my-zsh
     - clean-install

@@ -1,4 +1,4 @@
-# YAUP (Yet Another Ubuntu Provisioner)
+# YAUP
 A playbook for provisioning youre Ubuntu.    
 
 ## Setup
@@ -7,6 +7,6 @@ A playbook for provisioning youre Ubuntu.
     curl https://raw.githubusercontent.com/JEA666/jaup/master/bootstrap.sh
 
     chmod +x bootstrap.sh    
-    ./bootsrap.sh    
+    sudo ./bootsrap.sh    
 
 

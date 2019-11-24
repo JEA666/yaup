@@ -1,0 +1,3 @@
+gitUserName: "{{ priUserName }}"
+cliEditor: vim
+userMail: "{{ priUserMail }}"

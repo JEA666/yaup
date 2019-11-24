@@ -1,0 +1,20 @@
+---
+
+- name: Development Tools
+  block:
+    
+    - name: Install "apps" with apt
+      apt:
+        name: "{{ aptDevTools }}"
+        state: present
+
+    - name: Install "apps" with snap and option --classic
+      snap:
+        name: "{{ snapDevTools }}"
+        classic: yes
+
+    - name: Upgrade installed apt packages
+      apt: upgrade=yes
+
+  become: yes
+  become_user: root

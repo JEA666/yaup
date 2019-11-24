@@ -1,0 +1,15 @@
+---
+
+- name: System Tools
+  block:
+ 
+    - name: Install
+      apt:
+        name: "{{ aptSysTools }}"
+        state: present
+
+    - name: Upgrade installed packages
+      apt: upgrade=yes
+
+  become: yes
+  become_user: root

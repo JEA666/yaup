@@ -4,6 +4,7 @@
 
 - name: post install - cleaning...
   block:
+
     - name: If dell-super-key is present
       apt:
         name: dell-super-key
@@ -16,5 +17,6 @@
     - name: Remove dependencies that are no longer required
       apt:
         autoremove: yes
+
   become: yes
   become_user: root

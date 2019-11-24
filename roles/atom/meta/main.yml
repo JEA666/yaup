@@ -1,6 +1,0 @@
-galaxy_info:
-  author: Jan Erik Andersen
-  description: Systemdriftsansvarlig PEP
-  company: SPK
-
-  min_ansible_version: 2.4.2.0
