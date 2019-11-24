@@ -8,26 +8,13 @@
     - vars/pri_global.yml   
 
   roles:
-# roles
     - common
-    - jdk8
     - gen_ssh_key
     - setup_git
-
     - docker
     - slack
     - virtualbox
-##    - citrix
-##    - vmware_client
-
-
     - docker-machine
     - oh-my-zsh
-    - atom
-#    - mailspring
-
-
-  #    - i3wm
-
 
     - clean-install
