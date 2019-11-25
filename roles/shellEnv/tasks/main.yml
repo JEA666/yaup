@@ -1,0 +1,46 @@
+---
+# tasks file for oh-my-zsh
+
+- name: Install oh-my-zsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: ~/.oh-my-zsh
+
+- name: Copy .zshrc to $HOME
+  template:
+    src: zshrc
+    dest: ~/.zshrc
+  
+- name: Post install ZSH - Switch shell
+  become: yes
+  become_user: root
+  user:
+    name: "{{ userName }}"
+    shell: /usr/bin/zsh
+
+- name: Check for tmux pretty shiny
+  shell: which tmux
+  register: gotTmux.rc
+
+- name: Install pretty shiny tmux...
+  git:
+    repo: https://github.com/gpakosz/.tmux.git
+    dest: ~/.tmux
+  when: gotTmux.rc !=0
+
+- name: Create a symbolic link
+  file:
+    src: /home/{{ userName }}/.tmux/.tmux.conf
+    dest: /home/{{ userName }}/.tmux.conf
+    owner: "{{ userName }}"
+    group: "{{ userName }}"
+    state: link
+  when: gotTmux.rc !=0
+
+- name: Tmux setup
+  shell: cd && ln -s -f .tmux/.tmux.conf
+  when: gotTmux.rc !=0
+
+- name: Copy config
+  shell: cd && cp .tmux/.tmux.conf.local .
+  when: gotTmux.rc !=0

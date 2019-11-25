@@ -15,6 +15,22 @@
 
     - name: Upgrade installed apt packages
       apt: upgrade=yes
+    
+    - name: Check if Golang is installed
+      shell: which go
+      register: gotGo.rc
 
+    - name: Download Golang
+      shell: wget https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz
+      when: gotGo.rc !=0
+
+    - name: Extract Golang
+      shell: tar -C /usr/local -xzf go1.13.4.linux-amd64.tar.gz
+      when: gotGo.rc !=0
+
+    - name: Copie Golang path
+      shell: export PATH=$PATH:/usr/local/go/bin && echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
+      when: gotGo.rc !=0
+      
   become: yes
   become_user: root

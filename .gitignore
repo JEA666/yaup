@@ -1,2 +1,4 @@
 *.retry
 priHost
+*.tar.gz
+*.swp
