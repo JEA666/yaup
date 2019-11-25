@@ -1,3 +1,4 @@
 gitUserName: "{{ priUserName }}"
 cliEditor: vim
 userMail: "{{ priUserMail }}"
+userName: "{{ priUserName }}"

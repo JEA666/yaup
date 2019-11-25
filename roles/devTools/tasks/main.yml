@@ -1,36 +1,59 @@
 ---
-
-- name: Development Tools
-  block:
     
-    - name: Install "apps" with apt
-      apt:
-        name: "{{ aptDevTools }}"
-        state: present
-
-    - name: Install "apps" with snap and option --classic
-      snap:
-        name: "{{ snapDevTools }}"
-        classic: yes
-
-    - name: Upgrade installed apt packages
-      apt: upgrade=yes
-    
-    - name: Check if Golang is installed
-      shell: which go
-      register: gotGo.rc
-
-    - name: Download Golang
-      shell: wget https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz
-      when: gotGo.rc !=0
-
-    - name: Extract Golang
-      shell: tar -C /usr/local -xzf go1.13.4.linux-amd64.tar.gz
-      when: gotGo.rc !=0
-
-    - name: Copie Golang path
-      shell: export PATH=$PATH:/usr/local/go/bin && echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
-      when: gotGo.rc !=0
-      
+- name: Install "apps" with apt
+  apt:
+    name: "{{ aptDevTools }}"
+    state: present
   become: yes
   become_user: root
+
+- name: Install "apps" with snap and option --classic
+  snap:
+    name: "{{ snapDevTools }}"
+    classic: yes
+  become: yes
+  become_user: root
+
+- name: Upgrade installed apt packages
+  apt: upgrade=yes
+  become: yes
+  become_user: root
+    
+- name: Check if Golang is installed
+  shell: which go
+  register: gotGo
+  ignore_errors: true
+
+- name: Download an extract go
+  unarchive:
+    src: https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz
+    dest: /usr/local
+    remote_src: yes
+  when: gotGo.rc !=0
+  become: yes
+  become_user: root
+
+- name: Copie Golang path
+  shell: export PATH=$PATH:/usr/local/go/bin && echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
+  when: gotGo.rc !=0
+
+- name: Download and install Vagrant
+  apt:
+    deb: https://releases.hashicorp.com/vagrant/2.2.6/vagrant_2.2.6_x86_64.deb
+  become: yes
+  become_user: root
+
+- name: Download and install Terraform
+  unarchive:
+    src: https://releases.hashicorp.com/terraform/0.12.16/terraform_0.12.16_linux_amd64.zip
+    dest: /usr/local/bin
+    remote_src: yes
+  become: yes
+  become_user: root
+
+- name: Download and install VirtualBox
+  apt:
+    deb: https://download.virtualbox.org/virtualbox/6.0.14/virtualbox-6.0_6.0.14-133895~Ubuntu~bionic_amd64.deb
+  become: yes
+  become_user: root
+

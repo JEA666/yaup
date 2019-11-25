@@ -20,7 +20,7 @@
 
 - name: Check for tmux pretty shiny
   shell: which tmux
-  register: gotTmux.rc
+  register: gotTmux
 
 - name: Install pretty shiny tmux...
   git:
