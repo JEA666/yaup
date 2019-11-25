@@ -1,5 +1,5 @@
 # YAUP
-A playbook for provisioning youre Ubuntu.    
+A playbook for provisioning your Ubuntu.    
 
 ## Setup
 
@@ -8,5 +8,6 @@ A playbook for provisioning youre Ubuntu.
 
     chmod +x bootstrap.sh    
     sudo ./bootsrap.sh    
+    ansible-playbook ubuntudesktop.yml --ask-become-pass     
 
 
