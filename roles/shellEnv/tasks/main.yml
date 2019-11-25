@@ -44,3 +44,9 @@
 - name: Copy config
   shell: cd && cp .tmux/.tmux.conf.local .
   when: gotTmux.rc !=0
+
+- name: Disable swp file in vim
+  lineinfile:
+    path: ~/.vimrc
+    regexp: '^noswapfile'
+    line: set noswapfile

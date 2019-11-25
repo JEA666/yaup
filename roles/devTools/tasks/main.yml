@@ -24,6 +24,21 @@
   register: gotGo
   ignore_errors: true
 
+- name: Check if Vagrant is installed
+  shell: which vagrant
+  register: gotVagrant
+  ignore_errors: true
+
+- name: Check if Terraform is installed
+  shell: which terraform
+  register: gotTerraform
+  ignore_errors: true
+
+- name: Check if Virtualbox is installed
+  shell: which virtualbox
+  register: gotVirtualbox
+  ignore_errors: true
+
 - name: Download an extract go
   unarchive:
     src: https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz
@@ -42,6 +57,7 @@
     deb: https://releases.hashicorp.com/vagrant/2.2.6/vagrant_2.2.6_x86_64.deb
   become: yes
   become_user: root
+  when: gotVagrant.rc !=0
 
 - name: Download and install Terraform
   unarchive:
@@ -50,10 +66,12 @@
     remote_src: yes
   become: yes
   become_user: root
+  when: gotTerraform.rc !=0
 
 - name: Download and install VirtualBox
   apt:
     deb: https://download.virtualbox.org/virtualbox/6.0.14/virtualbox-6.0_6.0.14-133895~Ubuntu~bionic_amd64.deb
   become: yes
   become_user: root
+  when: gotVirtualbox.rc !=0
 
