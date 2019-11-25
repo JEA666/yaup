@@ -1,5 +1,5 @@
 # YAUP
-A playbook for provisioning your Ubuntu.    
+An Ansible playbook for provisioning your Ubuntu.    
 
 ## Setup
 

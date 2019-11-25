@@ -75,3 +75,12 @@
   become_user: root
   when: gotVirtualbox.rc !=0
 
+- name: Download and install Gittyleaks
+  pip:
+    name: gittyleaks
+    executable: pip3
+  become: yes
+  become_user: root
+
+
+

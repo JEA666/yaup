@@ -11,6 +11,7 @@ aptDevTools:
   - vim
   - zsh
   - tmux
+  - python3-pip
 
 
 snapDevTools:
