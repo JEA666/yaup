@@ -1,1 +1,0 @@
-{"virtualbox":{"/opt/data":{"type":"virtualbox","guestpath":"/opt/data","hostpath":"/home/spk.no/jea/git/pri/resources/data","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/spk.no/jea/git/pri/yaup","disabled":false,"__vagrantfile":true}}}
