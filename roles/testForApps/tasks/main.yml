@@ -1,0 +1,39 @@
+---
+
+# sysTools
+
+# devTools
+- name: Check if Golang is installed
+  shell: which go
+  register: gotGo
+  ignore_errors: true
+
+- name: Check if Vagrant is installed
+  shell: which vagrant
+  register: gotVagrant
+  ignore_errors: true
+
+- name: Check if Terraform is installed
+  shell: which terraform
+  register: gotTerraform
+  ignore_errors: true
+
+- name: Check if Virtualbox is installed
+  shell: which virtualbox
+  register: gotVirtualbox
+  ignore_errors: true
+
+# shellEnv
+- name: Check for tmux pretty shiny
+  shell: which zsh
+  register: gotZsh
+
+- name: Check for tmux pretty shiny
+  shell: which tmux
+  register: gotTmux
+
+# secTools 
+- name: Check for Gittyleaks
+  shell: which gittyleaks
+  register: gotGitty
+  ignore_errors: true

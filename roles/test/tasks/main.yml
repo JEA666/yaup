@@ -1,3 +1,0 @@
-- name: Check for Gittyleaks
-  shell: which gittyleaks
-  register: gotGitty

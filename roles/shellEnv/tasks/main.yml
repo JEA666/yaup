@@ -5,23 +5,22 @@
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh
     dest: ~/.oh-my-zsh
+  when: gotZsh.rc !=0
 
 - name: Copy .zshrc to $HOME
   template:
     src: zshrc
     dest: ~/.zshrc
-  
+  when: gotZsh.rc !=0
+
 - name: Post install ZSH - Switch shell
   become: yes
   become_user: root
   user:
     name: "{{ userName }}"
     shell: /usr/bin/zsh
-
-- name: Check for tmux pretty shiny
-  shell: which tmux
-  register: gotTmux
-
+  when: gotZsh.rc !=0
+  
 - name: Install pretty shiny tmux...
   git:
     repo: https://github.com/gpakosz/.tmux.git
@@ -50,3 +49,4 @@
     path: ~/.vimrc
     regexp: '^noswapfile'
     line: set noswapfile
+    create: yes

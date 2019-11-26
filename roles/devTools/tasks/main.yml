@@ -19,25 +19,28 @@
   become: yes
   become_user: root
     
-- name: Check if Golang is installed
-  shell: which go
-  register: gotGo
-  ignore_errors: true
+- name: Download and install Vagrant
+  apt:
+    deb: https://releases.hashicorp.com/vagrant/2.2.6/vagrant_2.2.6_x86_64.deb
+  become: yes
+  become_user: root
+  when: gotVagrant.rc !=0
 
-- name: Check if Vagrant is installed
-  shell: which vagrant
-  register: gotVagrant
-  ignore_errors: true
+- name: Download and install VirtualBox
+  apt:
+    deb: https://download.virtualbox.org/virtualbox/6.0.14/virtualbox-6.0_6.0.14-133895~Ubuntu~bionic_amd64.deb
+  become: yes
+  become_user: root
+  when: gotVirtualbox.rc !=0
 
-- name: Check if Terraform is installed
-  shell: which terraform
-  register: gotTerraform
-  ignore_errors: true
-
-- name: Check if Virtualbox is installed
-  shell: which virtualbox
-  register: gotVirtualbox
-  ignore_errors: true
+- name: Download and install Terraform
+  unarchive:
+    src: https://releases.hashicorp.com/terraform/0.12.16/terraform_0.12.16_linux_amd64.zip
+    dest: /usr/local/bin
+    remote_src: yes
+  become: yes
+  become_user: root
+  when: gotTerraform.rc !=0
 
 - name: Download an extract go
   unarchive:
@@ -52,28 +55,6 @@
   shell: export PATH=$PATH:/usr/local/go/bin && echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
   when: gotGo.rc !=0
 
-- name: Download and install Vagrant
-  apt:
-    deb: https://releases.hashicorp.com/vagrant/2.2.6/vagrant_2.2.6_x86_64.deb
-  become: yes
-  become_user: root
-  when: gotVagrant.rc !=0
-
-- name: Download and install Terraform
-  unarchive:
-    src: https://releases.hashicorp.com/terraform/0.12.16/terraform_0.12.16_linux_amd64.zip
-    dest: /usr/local/bin
-    remote_src: yes
-  become: yes
-  become_user: root
-  when: gotTerraform.rc !=0
-
-- name: Download and install VirtualBox
-  apt:
-    deb: https://download.virtualbox.org/virtualbox/6.0.14/virtualbox-6.0_6.0.14-133895~Ubuntu~bionic_amd64.deb
-  become: yes
-  become_user: root
-  when: gotVirtualbox.rc !=0
 
 
 

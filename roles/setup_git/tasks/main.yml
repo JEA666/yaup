@@ -3,9 +3,9 @@
 
 - name: Configure git
   git_config:
-    name: "{{ item.name }}"
-    scope: global
+    name: "{{ item.name }}"    
     value: "{{ item.value }}"
+    scope: global
   with_items:
     - { name: 'user.name', value: "{{ gitUserName }}" }
     - { name: 'core.editor', value: "{{ cliEditor }}" }
