@@ -3,3 +3,4 @@ priHost
 *.tar.gz
 *.swp
 Not_working_swarm/
+.vagrant/
