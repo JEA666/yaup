@@ -1,0 +1,19 @@
+aptSysTools:
+  - htop
+  - iftop
+  - apt-transport-https
+  - ca-certificates
+  - software-properties-common
+
+aptDevTools:
+  - curl
+  - git
+  - vim
+  - zsh
+  - tmux
+  - python3-pip
+
+
+snapDevTools:
+  - slack
+  - code 

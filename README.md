@@ -9,6 +9,11 @@ An Ansible playbook for provisioning your Ubuntu.
 
     chmod +x bootstrap.sh    
     sudo ./bootsrap.sh    
-    ansible-playbook ubuntudesktop.yml --ask-become-pass    
+    ansible-playbook ubuntudesktop.yml --ask-become-pass
+
+
+## test  
+
+    ansible-playbook testSetup.yml --private-key=/home/spk.no/jea/.vagrant.d/insecure_private_key -i inventory/test/hosts  
 
 

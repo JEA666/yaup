@@ -1,0 +1,5 @@
+gitUserName: "{{ priGitUserName }}"
+cliEditor: vim
+userMail: "{{ priUserMail }}"
+userName: "{{ priUserName }}"
+homePath: "{{ priHomePath }}"
