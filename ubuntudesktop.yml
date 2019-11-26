@@ -11,13 +11,15 @@
     - inventory/local/host_vars/priHost    
 
   roles:
-    - sysTools
-    - devTools
-    - setup_git
-    - shellEnv
+    - test
+#    - sysTools
+#    - devTools
+    - secTools
+#    - setup_git
+#    - shellEnv
       # - docker
       # - slack
       # - virtualbox
       # - docker-machine
       # - oh-my-zsh
-    - clean-install
+#    - clean-install

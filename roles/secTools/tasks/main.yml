@@ -1,0 +1,12 @@
+
+# - name: Check for Gittyleaks
+#   shell: which gittyleaks
+#   register: gotGitty
+
+- name: Download and install Gittyleaks
+  pip:
+    name: gittyleaks
+    executable: pip3
+  become: yes
+  become_user: root
+  when: gotGitty.rc !=0
