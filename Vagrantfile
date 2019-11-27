@@ -3,7 +3,7 @@ N = 1
 DATAPATH = "../resources/data"
 
 
-# Standard swarm
+# Testing worstation setup
 PLAYBOOK = "testSetup.yml"
 
 Vagrant.configure("2") do |config|

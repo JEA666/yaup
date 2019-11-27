@@ -14,6 +14,6 @@ An Ansible playbook for provisioning your Ubuntu.
 
 ## test  
 
-    ansible-playbook testSetup.yml -u vagrant -i inventory/test/hosts  
+    vagrant up
 
 

@@ -1,9 +1,11 @@
 aptSysTools:
-  - htop
-  - iftop
   - apt-transport-https
   - ca-certificates
   - software-properties-common
+  - nmap
+  - whois
+  - htop
+  - iftop
 
 aptDevTools:
   - curl
