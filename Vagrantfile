@@ -4,17 +4,17 @@ DATAPATH = "../resources/data"
 
 
 # Standard swarm
-PLAYBOOK = "ubuntudesktop.yml"
+PLAYBOOK = "testSetup.yml"
 
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false    
    
-    # # Provision
-    # config.vm.provision :ansible do |ansible|
-    #     ansible.playbook = PLAYBOOK
-    #     ansible.limit = "all"
-    #     ansible.verbose = "v"    
-    # end
+    # Provision
+    config.vm.provision :ansible do |ansible|
+        ansible.playbook = PLAYBOOK
+        ansible.limit = "all"
+        ansible.verbose = "v"    
+    end
 
     # loop
     (1..N).each do |machine_id|

@@ -12,5 +12,5 @@
       dest: ~/git/pri/yaup/
 
   - name: Press Play on Tape
-    shell: cd ~/git/pri/yaup && sudo ./bootstrap.sh
+    shell: cd ~/git/pri/yaup && sudo ./testBootstrap.sh
 
