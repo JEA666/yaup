@@ -14,6 +14,6 @@ An Ansible playbook for provisioning your Ubuntu.
 
 ## test  
 
-    ansible-playbook testSetup.yml --private-key=/home/spk.no/jea/.vagrant.d/insecure_private_key -i inventory/test/hosts  
+    ansible-playbook testSetup.yml --private-key=/home/$HOME/.vagrant.d/insecure_private_key -i inventory/test/hosts  
 
 
