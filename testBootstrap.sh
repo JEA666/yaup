@@ -17,4 +17,4 @@ priUserMail: GitUser@example.com
 priUserName: testUser
 EOF
 
-sudo ansible-playbook ubuntudesktop.ym 
+sudo ansible-playbook ubuntudesktop.yml 
