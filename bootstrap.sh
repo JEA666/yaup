@@ -11,10 +11,11 @@ else
     apt install ansible -y
 fi
 
-cat $HOME/git/pri/yaup/inventory/local/host_vars/priHost <<EOF
+cat > ~/git/pri/yaup/inventory/local/host_vars/priHost <<EOF
 priGitUserName: GitUser
 priUserMail: GitUser@example.com
 priUserName: testUser
+EOF
 
 echo "To run Ansible  type in this command"
 echo "ansible-playbook ubuntudesktop.yml --ask-become-pass" 
