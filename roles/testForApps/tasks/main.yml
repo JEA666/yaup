@@ -31,6 +31,7 @@
 - name: Check for tmux pretty shiny
   shell: which tmux
   register: gotTmux
+  ignore_errors: true
 
 # secTools 
 - name: Check for Gittyleaks

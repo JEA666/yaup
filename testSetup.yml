@@ -2,14 +2,15 @@
 
 - name: Test Provisioning Ubuntu
   hosts: all
-  remote_user: "$USER"
+ # remote_user:
   gather_facts: yes
 
   tasks:
   - name: Download YAUP
     git:
       repo: https://github.com/JEA666/yaup.git
-      dest: ~/git/pri/
+      dest: ~/git/pri/yaup/
 
   - name: Press Play on Tape
-    shell: cd ~/git/pri/yaup && ansible-playbook ubuntudesktop.yml --ask-become-pass
+    shell: cd ~/git/pri/yaup && sudo ./bootstrap.sh
+
