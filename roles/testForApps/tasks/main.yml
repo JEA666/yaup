@@ -24,9 +24,10 @@
   ignore_errors: true
 
 # shellEnv
-- name: Check for tmux pretty shiny
+- name: Check for zsh
   shell: which zsh
   register: gotZsh
+  ignore_errors: true
 
 - name: Check for tmux pretty shiny
   shell: which tmux
