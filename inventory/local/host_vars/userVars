@@ -1,5 +1,5 @@
 gitUserName: "{{ priGitUserName }}"
 cliEditor: vim
-userMail: "{{ priUserMail }}"
-userName: "{{ priUserName }}"
-homePath: "{{ priHomePath }}"
+userMail: "{{ priUserMail | default('user@test.com') }}"
+userName: "{{ priUserName | default('$USER') }}"
+homePath: "{{ priHomePath | default('$HOME') }}"

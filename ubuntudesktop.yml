@@ -8,7 +8,7 @@
           #    - inventory/local/group_vars/
     - inventory/local/host_vars/localApps 
     - inventory/local/host_vars/userVars
-    - inventory/local/host_vars/priHost    
+    - inventory/local/host_vars/"{{ priHost | default('userVars') }}"    
 
   roles:
     - testForApps
