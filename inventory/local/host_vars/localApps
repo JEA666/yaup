@@ -14,6 +14,7 @@ aptDevTools:
   - zsh
   - tmux
   - python3-pip
+  - default-jdk-headless
 
 
 snapDevTools:

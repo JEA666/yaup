@@ -11,8 +11,7 @@ An Ansible playbook for provisioning your Ubuntu.
     sudo ./bootsrap.sh    
     ansible-playbook ubuntudesktop.yml --ask-become-pass
 
-
-## test  
+## Test  
 
     Add this lines to ansible.cfg
     [ssh_connection]
@@ -23,4 +22,9 @@ An Ansible playbook for provisioning your Ubuntu.
 
     vagrant up
 
+## Apps
+Gittyleaks https://github.com/kootenpv/gittyleaks
+
+    Nice to know
+    gittyleaks --find-anything
 

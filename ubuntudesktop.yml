@@ -5,7 +5,6 @@
   connection: local
   gather_facts: yes
   vars_files:
-          #    - inventory/local/group_vars/
     - inventory/local/host_vars/localApps 
     - inventory/local/host_vars/userVars
     - inventory/local/host_vars/priHost    
