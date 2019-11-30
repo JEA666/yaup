@@ -1,0 +1,35 @@
+# roles/iptables/defaults/main.yml
+---
+# Default head (allow) rules
+iptables_default_head: | 
+  # # Default log accept rule
+  -N LOG_ACCEPT
+  -A LOG_ACCEPT -j LOG --log-prefix "INPUT:ACCEPT:" --log-level 6
+  -A LOG_ACCEPT -j ACCEPT
+  
+  # # Default log drop rule
+  -N LOG_DROP
+  -A LOG_DROP -j LOG --log-prefix "INPUT:DROP:" --log-level 6
+  -A LOG_DROP -j DROP
+  
+  -A INPUT -i lo -j ACCEPT
+  -A INPUT -m state --state RELATED,ESTABLISHED -j LOG_ACCEPT
+  -A INPUT -p icmp --icmp-type echo-request -j LOG_ACCEPT
+  
+  -P INPUT ACCEPT
+  -P FORWARD ACCEPT
+  -P OUTPUT ACCEPT
+
+# Default tail (deny) rules
+iptables_default_tail: |
+  -A INPUT -j LOG_DROP
+  -A FORWARD -j LOG_DROP
+
+iptables_apps_rules: |
+  -A INPUT -p tcp -m tcp --dport 22 -j LOG_ACCEPT
+  -A INPUT -p tcp -m tcp --dport 80 -j LOG_ACCEPT
+  -A INPUT -p tcp -m tcp --dport 443 -j LOG_ACCEPT
+
+# By default this role deletes all iptables rules which are not managed by Ansible.
+# Set this to 'yes', if you want the role to keep unmanaged rules.
+iptables_keep_unmanaged: yes

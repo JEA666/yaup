@@ -1,0 +1,43 @@
+# roles/iptables/tasks/main.yml
+# - name: Set custom iptables rules
+#   iptables_raw:
+#     name: 'iptables_custom_rules_{{ item.name }}'
+#     rules: '{{ item.rules }}'
+#     state: '{{ item.state }}'
+#     weight: '{{ item.weight|default(omit) }}'
+#     table: '{{ item.table|default(omit) }}'
+#   with_items: '{{ iptables_custom_rules }}'
+#   tags: iptables
+
+- name: Set apps iptables rules
+  iptables_raw:
+    name: iptables_apps_rules
+    weight: 40
+    keep_unmanaged: '{{ iptables_keep_unmanaged }}'
+    state: present
+    rules: '{{ iptables_apps_rules }}'
+  tags: iptables
+  become: yes
+  become_user: root
+
+- name: Set default iptables head rules
+  iptables_raw:
+    name: iptables_default_head
+    weight: 10
+    keep_unmanaged: '{{ iptables_keep_unmanaged }}'
+    state: present
+    rules: '{{ iptables_default_head }}'
+  tags: iptables
+  become: yes
+  become_user: root
+
+- name: Set default iptables tail rules
+  iptables_raw:
+    name: iptables_default_tail
+    weight: 99
+    keep_unmanaged: '{{ iptables_keep_unmanaged }}'
+    state: '{{ (iptables_default_tail != "" ) | ternary("present", "absent") }}'
+    rules: '{{ iptables_default_tail }}'
+  tags: iptables
+  become: yes
+  become_user: root

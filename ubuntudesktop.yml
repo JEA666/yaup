@@ -13,8 +13,10 @@
   roles:
     - testForApps
     - sysTools
-    - devTools
-    - secTools
-#    - setup_git
+    - iptables
     - shellEnv
+    - secTools
+    - devTools
+#    - setup_git  #Rune once, need to check for config and make a solution for work config.
     - clean-install
+ 

@@ -39,3 +39,15 @@
   shell: which gittyleaks
   register: gotGitty
   ignore_errors: true
+
+- name: Check for bfg
+  stat:
+    path: /usr/local/bin/bfg.jar
+  register: gotBfg
+  ignore_errors: true
+
+- name: Check for Iptables Raw
+  stat:
+    path:  /usr/share/ansible/plugins/modules/ansible_iptables_raw/iptables_raw.py
+  register: gotIptRaw
+  ignore_errors: true

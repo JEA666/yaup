@@ -17,3 +17,10 @@
     dest: /usr/local/bin/bfg.jar
   become: yes
   become_user: root
+  when: gotBfg.stat.exists == False
+
+- name: Install Iptables Raw
+  git:
+    repo: https://github.com/Nordeus/ansible_iptables_raw.git
+    dest: /usr/share/ansible/plugins/modules/ansible_iptables_raw
+  when: gotIptRaw.stat.exists == False

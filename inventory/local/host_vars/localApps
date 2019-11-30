@@ -6,6 +6,7 @@ aptSysTools:
   - whois
   - htop
   - iftop
+  - iptables-persistent
 
 aptDevTools:
   - curl
@@ -15,6 +16,7 @@ aptDevTools:
   - tmux
   - python3-pip
   - default-jdk-headless
+  - goaccess
 
 
 snapDevTools:
