@@ -3,23 +3,24 @@ An Ansible playbook for provisioning your Ubuntu.
 
 ## Setup
 
-    wget https://raw.githubusercontent.com/JEA666/yaup/master/bootstrap.sh    
-    or  
+    wget or use curl for download    
     curl https://raw.githubusercontent.com/JEA666/yaup/master/bootstrap.sh
 
     chmod +x bootstrap.sh    
     sudo ./bootsrap.sh    
-    ansible-playbook ubuntudesktop.yml --ask-become-pass   
-    If you want to run parts of the play!    
-    ansible-playbook ubuntudesktop.yml -t iptables --ask-become-pass
+    ansible-playbook ubuntudesktop.yml --ask-become-pass  
+
+    If you want to run parts of the play!  
+    ansible-playbook ubuntudesktop.yml -t iptables --ask-become-pass  
 
 ## Test  
 
-    Add this lines to ansible.cfg
+    Add this lines to ansible.cfg, if the file doesn't exist og the lines are missing. 
+
     [ssh_connection]
     ssh_args = -C -o ControlMaster=auto -o ControlPersist=60s -F ssh_config
 
-    Generate ssh_config if the one provided do not work
+    Generate ssh_config if the one provided do not work.
     vagrant ssh-config >> ssh_config
 
     vagrant up
@@ -35,12 +36,12 @@ BFG https://rtyley.github.io/bfg-repo-cleaner/
 
 ## DNS, Proxy, FW management and logs.  
 
-FW management is provided by a plugin to Ansible, called iptables_raw  
-
-    https://engineering.nordeus.com/managing-iptables-with-ansible-the-easy-way/   
+FW management is provided by a plugin to Ansible, called iptables_raw.  
+https://engineering.nordeus.com/managing-iptables-with-ansible-the-easy-way/   
 
 ## Is this my Firewall!!
 Iptables - managed with iptables_raw/Ansible  
+TODO  --  
 Splunk - https://www.splunk.com/ - Logging  
 fail2ban - Banish naughty hosts  
 
