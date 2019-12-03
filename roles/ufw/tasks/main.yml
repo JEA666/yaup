@@ -1,0 +1,19 @@
+#roles/ufw/tasks/main.yml
+---
+
+- name: Allow everything and enable UFW
+  ufw:
+    state: enabled
+    policy: allow
+
+- name: Set logging
+  ufw:
+    logging: 'on'
+
+- name: log reject and dropped traffic
+  ufw:
+    rules: "{{ item.rule }}"
+    port: "{{ item.port }}"
+    log: yes
+  loop:
+    - { rule: 'allow', port: '80, 443' }

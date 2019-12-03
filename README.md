@@ -3,7 +3,7 @@ An Ansible playbook for provisioning your Ubuntu.
 
 ## Setup
 
-    wget or use curl for download    
+    wget or use curl to download.    
     curl https://raw.githubusercontent.com/JEA666/yaup/master/bootstrap.sh
 
     chmod +x bootstrap.sh    
@@ -43,6 +43,14 @@ https://engineering.nordeus.com/managing-iptables-with-ansible-the-easy-way/
 Iptables - managed with iptables_raw/Ansible  
 TODO  --  
 Splunk - https://www.splunk.com/ - Logging  
+
+    etc/system/local/web.conf <-- mgmtHostPort = 127.0.0.1:9089
+    
+    Enable boot start as a non root user.
+    sudo ./splunk enable boot-start -user splunk
+    
+    sudo su - splunk;
+
 fail2ban - Banish naughty hosts  
 
 Honeypot ?  
