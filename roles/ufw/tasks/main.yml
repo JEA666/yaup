@@ -2,27 +2,37 @@
 ---
 
     - name: Configure ufw defaults
-      ufw: direction={{ item.direction }} policy={{ item.policy }}
+      ufw: direction={{ item.direction }} policy={{ item.policy }} log={{ item.log }} comment={{ item.comment}}
       with_items:
-        - { direction: 'incoming', policy: 'deny' }
-        - { direction: 'outgoing', policy: 'allow' }
+        - { direction: 'incoming', policy: 'deny', log: 'yes', comment: 'ACTION=DROP' }
+        - { direction: 'outgoing', policy: 'allow', log: 'yes', comment: 'ACTION=ACCEPT' }
      # notify:
     #    - restart ufw
+      become: yes
+      become_user: root
     
     - name: Configure ufw rules
-      ufw: rule={{ item.rule }} port={{ item.port }} proto={{ item.proto }}
+      ufw: rule={{ item.rule }} port={{ item.port }} proto={{ item.proto }} log={{ item.log }} comment={{ item.comment}}
       with_items:
-        - { rule: 'limit', port: '{{ ssh_port | default("22") }}', proto: 'tcp' }
-        - { rule: 'allow', port: '80', proto: 'tcp' }
-        - { rule: 'allow', port: '443', proto: 'tcp' }
+        - { rule: 'limit', port: '{{ ssh_port | default("22") }}', proto: 'tcp', log: 'yes', comment: 'ACTION=ACCEPT' }
+        - { rule: 'allow', port: '80', proto: 'tcp', log: 'yes', comment: 'ACTION=ACCEPT' }
+        - { rule: 'allow', port: '443', proto: 'tcp', log: 'yes', comment: 'ACTION=ACCEPT' }
      # notify:
      #   - restart ufw
-    
+      become: yes
+      become_user: root
+
     - name: Enable ufw logging
-      ufw: logging=on
+      ufw: 
+        logging: yes
       #notify:
       #  - restart ufw
+      become: yes
+      become_user: root
     
     - name: Enable ufw
-      ufw: state=enabled
+      ufw: 
+        state: enabled
+      become: yes
+      become_user: root
     
