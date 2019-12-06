@@ -6,8 +6,6 @@
       with_items:
         - { direction: 'incoming', policy: 'deny', log: 'yes', comment: 'ACTION=DROP' }
         - { direction: 'outgoing', policy: 'allow', log: 'yes', comment: 'ACTION=ACCEPT' }
-     # notify:
-    #    - restart ufw
       become: yes
       become_user: root
     
@@ -17,16 +15,12 @@
         - { rule: 'limit', port: '{{ ssh_port | default("22") }}', proto: 'tcp', log: 'yes', comment: 'ACTION=ACCEPT' }
         - { rule: 'allow', port: '80', proto: 'tcp', log: 'yes', comment: 'ACTION=ACCEPT' }
         - { rule: 'allow', port: '443', proto: 'tcp', log: 'yes', comment: 'ACTION=ACCEPT' }
-     # notify:
-     #   - restart ufw
       become: yes
       become_user: root
 
     - name: Enable ufw logging
       ufw: 
         logging: yes
-      #notify:
-      #  - restart ufw
       become: yes
       become_user: root
     
