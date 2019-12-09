@@ -40,16 +40,24 @@ FW management is provided by a plugin to Ansible, called iptables_raw.
 https://engineering.nordeus.com/managing-iptables-with-ansible-the-easy-way/   
 
 ## Is this my Firewall!!
-Iptables - managed with iptables_raw/Ansible  
-TODO  --  
+Iptables - managed with UFW and Ansible
+
 Splunk - https://www.splunk.com/ - Logging  
 
-    etc/system/local/web.conf <-- mgmtHostPort = 127.0.0.1:9089
+    tar zxvf linux-netfilter-iptables-technology-add-on_100.tgz  
+    sudo mv TA_netfilter /opt/splunk/etc/apps  
+    sudo chown -R splunk:splunk /opt/splunk/etc/apps/TA_netfilter  
     
+    sudo vim /etc/group  
+    Add splunk user to adm group.  
+
     Enable boot start as a non root user.
     sudo ./splunk enable boot-start -user splunk
     
     sudo su - splunk;
+    Start splunk
+    cd /opt/splunk/bin
+    ./splunk start
 
 fail2ban - Banish naughty hosts  
 
