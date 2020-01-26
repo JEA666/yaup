@@ -17,11 +17,13 @@ aptDevTools:
   - python3-pip
   - default-jdk-headless
   - goaccess
+  - google-cloud-sdk
 
 
 snapDevTools:
   - slack
-  - code 
+  - code
+  - android-studio 
 
 # Deb linker
 #libiperf: https://iperf.fr/download/ubuntu/libiperf0_3.1.3-1_amd64.deb

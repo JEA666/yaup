@@ -11,6 +11,7 @@
   ignore_errors: true
 
   roles:
+    - addRepo
     - testForApps
     - sysTools
     - ufw
