@@ -36,9 +36,6 @@ BFG https://rtyley.github.io/bfg-repo-cleaner/
 
 ## DNS, Proxy, FW management and logs.  
 
-FW management is provided by a plugin to Ansible, called iptables_raw.  
-https://engineering.nordeus.com/managing-iptables-with-ansible-the-easy-way/   
-
 ## Is this my Firewall!!
 Iptables - managed with UFW and Ansible
 
